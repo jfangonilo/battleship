@@ -8,5 +8,6 @@ class Ship
   end
 
   def hit
+    @health -= 1
   end
 end
