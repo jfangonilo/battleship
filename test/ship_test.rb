@@ -22,5 +22,8 @@ class ShipTest < Minitest::Test
   def test_it_can_get_hit
     assert_equal 3, @cruiser.health
     @cruiser.hit
+    assert_equal 2, @cruiser.health
+    @cruiser.hit
+    assert_equal 1, @cruiser.health
   end
 end
