@@ -8,7 +8,7 @@ class Cell
   end
 
   def empty?
-    return true if ship == nil
+    return true if @ship == nil
     false
   end
 
@@ -22,13 +22,12 @@ class Cell
   end
 
   def render
-    if empty? == true && @fired_upon == true
+    if empty? && @fired_upon
       "M"
-    elsif (empty? == false && @fired_upon == true)
-      "H"
-       # require "pry"; binding.pry
-    elsif @ship.sunk? == true
+    elsif !empty? && @ship.sunk?
       "X"
+    elsif !empty? && @fired_upon
+      "H"
     else
       "."
     end
