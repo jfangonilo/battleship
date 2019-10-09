@@ -56,21 +56,25 @@ class CellTest < Minitest::Test
   end
 
   def test_render_fired_upon_and_no_ship
-    skip
     @cell.fire_upon
     assert_equal "M", @cell.render
   end
 
   def test_render_fired_upon_contains_ship
-    skip
     @cell.place_ship(@cruiser)
     @cell.fire_upon
     assert_equal "H", @cell.render
   end
 
   def test_render_sunk
-    skip
-    3.times { @cruiser.hit }
+    @cell.place_ship(@cruiser)
+    @cruiser.hit
+    assert_equal false, @cruiser.sunk?
+    @cruiser.hit
+    # require "pry"; binding.pry
+    @cruiser.hit
+    # require "pry"; binding.pry
+    assert_equal true, @cruiser.sunk?
     assert_equal "X", @cell.render
   end
 end
