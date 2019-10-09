@@ -26,6 +26,7 @@ class CellTest < Minitest::Test
   end
 
   def test_ship_can_be_placed
+    @cell.place_ship(@cruiser)
     assert_instance_of Ship, @cell.ship
   end
 end
