@@ -6,6 +6,7 @@ require 'minitest/autorun'
 class CellTest < Minitest::Test
   def setup
     @cell = Cell.new("B4")
+    @cell2 = Cell.new("C3")
     @cruiser = Ship.new("Cruiser", 3)
   end
 
@@ -67,14 +68,13 @@ class CellTest < Minitest::Test
   end
 
   def test_render_sunk
-    @cell.place_ship(@cruiser)
+    assert_equal ".", @cell.render
+    @cell2.place_ship(@cruiser)
     @cruiser.hit
     assert_equal false, @cruiser.sunk?
     @cruiser.hit
-    # require "pry"; binding.pry
     @cruiser.hit
-    # require "pry"; binding.pry
     assert_equal true, @cruiser.sunk?
-    assert_equal "X", @cell.render
+    assert_equal "X", @cell2.render
   end
 end
