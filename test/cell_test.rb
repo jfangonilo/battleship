@@ -38,4 +38,12 @@ class CellTest < Minitest::Test
      assert_equal true, @cell.fired_upon
   end
 
+  def test_ship_can_be_damaged
+    @cell.place_ship(@cruiser)
+    assert_equal 3, @cell.ship.health
+
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    assert_equal 2, @cell.ship.health
+  end
 end
