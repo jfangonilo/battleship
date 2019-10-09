@@ -46,9 +46,4 @@ class CellTest < Minitest::Test
     @cell.fire_upon
     assert_equal 2, @cell.ship.health
   end
-
-  def test_doesnt_break_if_cell_fired_upon_empty
-    @cell.fire_upon
-    assert_equal true, @cell.fired_upon
-  end
 end
