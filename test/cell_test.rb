@@ -18,7 +18,7 @@ class CellTest < Minitest::Test
   end
 
   def test_it_starts_without_ship
-    assert_equal nil, @cell.ship
+    refute @cell.ship
   end
 
   def test_empty_without_ship
@@ -42,7 +42,6 @@ class CellTest < Minitest::Test
     @cell.place_ship(@cruiser)
     assert_equal 3, @cell.ship.health
 
-    @cell.place_ship(@cruiser)
     @cell.fire_upon
     assert_equal 2, @cell.ship.health
   end
@@ -50,5 +49,28 @@ class CellTest < Minitest::Test
   def test_doesnt_break_if_cell_fired_upon_empty
     @cell.fire_upon
     assert_equal true, @cell.fired_upon
+  end
+
+  def test_render_cell_not_fired_upon
+    assert_equal ".", @cell.render
+  end
+
+  def test_render_fired_upon_and_no_ship
+    skip
+    @cell.fire_upon
+    assert_equal "M", @cell.render
+  end
+
+  def test_render_fired_upon_contains_ship
+    skip
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    assert_equal "H", @cell.render
+  end
+
+  def test_render_sunk
+    skip
+    3.times { @cruiser.hit }
+    assert_equal "X", @cell.render
   end
 end
