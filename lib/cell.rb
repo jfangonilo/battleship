@@ -20,4 +20,17 @@ class Cell
     @fired_upon = true
     @ship.hit unless empty?
   end
+
+  def render
+    if empty? == true && @fired_upon == true
+      "M"
+    elsif (empty? == false && @fired_upon == true)
+      "H"
+       # require "pry"; binding.pry
+    elsif @ship.sunk? == true
+      "X"
+    else
+      "."
+    end
+  end
 end
