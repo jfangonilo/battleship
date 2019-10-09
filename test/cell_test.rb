@@ -19,4 +19,8 @@ class CellTest < Minitest::Test
   def test_it_starts_without_ship
     assert_equal nil, @cell.ship
   end
+
+  def test_empty_without_ship
+    assert_equal true, @cell.empty?
+  end
 end
