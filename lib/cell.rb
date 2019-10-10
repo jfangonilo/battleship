@@ -21,13 +21,15 @@ class Cell
     @ship.hit unless empty?
   end
 
-  def render
+  def render(ship_visible = false)
     if empty? && @fired_upon
       "M"
     elsif !empty? && @ship.sunk?
       "X"
     elsif !empty? && @fired_upon
       "H"
+    elsif !empty? && ship_visible
+      "S" 
     else
       "."
     end
