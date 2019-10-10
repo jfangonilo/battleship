@@ -18,17 +18,17 @@ class Cell
 
   def fire_upon
     @fired_upon = true
-    @ship.hit unless empty?
+    ship.hit unless empty?
   end
 
   def render(ship_visible = false)
-    if !empty? && @ship.sunk?
+    if !empty? && ship.sunk?
       "X"
-    elsif !empty? && @fired_upon
+    elsif !empty? && fired_upon
       "H"
     elsif !empty? && ship_visible
       "S"
-    elsif empty? && @fired_upon
+    elsif empty? && fired_upon
       "M"
     else
       "."
