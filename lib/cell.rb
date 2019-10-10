@@ -22,14 +22,14 @@ class Cell
   end
 
   def render(ship_visible = false)
-    if empty? && @fired_upon
-      "M"
-    elsif !empty? && @ship.sunk?
+    if !empty? && @ship.sunk?
       "X"
     elsif !empty? && @fired_upon
       "H"
     elsif !empty? && ship_visible
-      "S" 
+      "S"
+    elsif empty? && @fired_upon
+      "M"
     else
       "."
     end
