@@ -21,6 +21,6 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    cells.any? { |coordinate_key, cell_value| coordinate_key == coordinate }
+    cells.key?(coordinate)
   end
 end
