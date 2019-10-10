@@ -33,10 +33,10 @@ class CellTest < Minitest::Test
 
   def test_cell_can_be_fired_on
      @cell_1.place_ship(@cruiser)
-     assert_equal false, @cell_1.fired_upon
+     assert_equal false, @cell_1.fired_upon?
 
      @cell_1.fire_upon
-     assert_equal true, @cell_1.fired_upon
+     assert_equal true, @cell_1.fired_upon?
   end
 
   def test_ship_can_be_damaged
@@ -49,7 +49,7 @@ class CellTest < Minitest::Test
 
   def test_doesnt_break_if_cell_fired_upon_empty
     @cell_1.fire_upon
-    assert_equal true, @cell_1.fired_upon
+    assert_equal true, @cell_1.fired_upon?
   end
 
   def test_render_cell_not_fired_upon
