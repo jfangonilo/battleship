@@ -22,28 +22,13 @@ class Board
     }
   end
 
-  def setup
-    @first_cell = @cells.to_a.first(0)
-    @last_cell = @cells.to_a.last(15)
-    #@placement_coordinates = @first_cell.first..@last_cell.last).to_a
-    @placement_coordinates = Range.new(@first_cell..@last_cell)
-    @cell_numbers = Range.new(1..4).to_a
-    @cell_letters = Range.new("A".."D".ord).to_a
-  end
-
   def valid_coordinate?(coordinate)
     cells.key?(coordinate)
   end
 
-  def valid_placement?(ship, placement_coordinates)
-    case
-    when @cell_numbers || @cell_letters
-      true
-    when placement_coordinates.each_cons(ship.length) { |cell| }
-      true
-    else
-      false
-    end
+  def valid_placement?(ship, coordinates)
+   return true if coordinates.length == ship.length
+   false
   end
 
 end
