@@ -30,5 +30,4 @@ class Board
    return true if coordinates.length == ship.length
    false
   end
-
 end
