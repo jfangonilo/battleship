@@ -40,4 +40,10 @@ class Board
   def number_set(coordinates)
     coordinates.map { |coordinate| coordinate.split('').last }.uniq.sort
   end
+
+  # measures length of the range of letter_set
+  def letter_range(letter_array)
+    (letter_array.first..letter_array.last).to_a.length
+  end
+
 end
