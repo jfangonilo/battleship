@@ -27,7 +27,17 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-   return true if coordinates.length == ship.length
+   true if coordinates.length == ship.length
    false
+  end
+
+  # get sorted array of the unique letters in a set of coordinates
+  def letter_set(coordinates)
+    coordinates.map { |coordinate| coordinate.split('').first }.uniq.sort
+  end
+
+  # get sorted array of the unique numbers in a set of coordinates
+  def number_set(coordinates)
+    coordinates.map { |coordinate| coordinate.split('').last }.uniq.sort
   end
 end
