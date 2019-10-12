@@ -41,6 +41,7 @@ class CellTest < Minitest::Test
   end
 
   def test_if_placement_coordinates_are_consecutive
+    skip
     assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
     assert_equal false, @board.valid_placement?(@submarine, ["A1", "C1"])
     assert_equal false, @board.valid_placement?(@cruiser, ["A3", "A2", "A1"])
@@ -57,5 +58,15 @@ class CellTest < Minitest::Test
     skip
     assert_equal true, @board.valid_placement?(@submarine, ["A1", "A2"])
     assert_equal true, @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
+  end
+
+  def test_coordinate_letters
+    assert_equal ["A"], @board.letter_set(["A2", "A3", "A4"])
+    assert_equal ["A", "B", "D"], @board.letter_set(["D2", "A3", "B4"])
+  end
+
+  def test_coordinate_numbers
+    assert_equal ["1"], @board.number_set(["D1", "A1", "C1"])
+    assert_equal ["1", "2", "4"], @board.number_set(["A2", "B4", "B1"])
   end
 end
