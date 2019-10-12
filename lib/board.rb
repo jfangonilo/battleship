@@ -32,18 +32,26 @@ class Board
   end
 
   # get sorted array of the unique letters in a set of coordinates
-  def letter_set(coordinates)
-    coordinates.map { |coordinate| coordinate.split('').first }.uniq.sort
+  # returns length of range from first and last numbers of above array
+  def letter_range(coordinates)
+    letter_array = coordinates.map do |coordinate|
+      coordinate.split('').first
+    end.uniq.sort
+    return (letter_array.first..letter_array.last).to_a.length
   end
 
   # get sorted array of the unique numbers in a set of coordinates
-  def number_set(coordinates)
-    coordinates.map { |coordinate| coordinate.split('').last }.uniq.sort
+  # returns length of range from first and last numbers of above array
+  def number_range(coordinates)
+    number_array = coordinates.map do |coordinate|
+      coordinate.split('').last
+    end.uniq.sort
+    return (number_array.first..number_array.last).to_a.length
   end
 
   # measures length of the range of letter_set
-  def letter_range(letter_array)
-    (letter_array.first..letter_array.last).to_a.length
-  end
+  # def letter_range(letter_array)
+  #   (letter_array.first..letter_array.last).to_a.length
+  # end
 
 end
