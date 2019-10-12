@@ -1,6 +1,8 @@
 class Board
-  def cells
-    {
+  attr_reader :cells
+
+  def initialize
+    @cells = {
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
       "A3" => Cell.new("A3"),
@@ -22,5 +24,20 @@ class Board
 
   def valid_coordinate?(coordinate)
     cells.key?(coordinate)
+  end
+
+  def valid_placement?(ship, coordinates)
+   true if coordinates.length == ship.length
+   false
+  end
+
+  # get sorted array of the unique letters in a set of coordinates
+  def letter_set(coordinates)
+    coordinates.map { |coordinate| coordinate.split('').first }.uniq.sort
+  end
+
+  # get sorted array of the unique numbers in a set of coordinates
+  def number_set(coordinates)
+    coordinates.map { |coordinate| coordinate.split('').last }.uniq.sort
   end
 end
