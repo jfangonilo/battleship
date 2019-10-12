@@ -69,4 +69,11 @@ class CellTest < Minitest::Test
     assert_equal ["1"], @board.number_set(["D1", "A1", "C1"])
     assert_equal ["1", "2", "4"], @board.number_set(["A2", "B4", "B1"])
   end
+
+  def test_range_of_coordinates_given_is_equal_to_ship_length
+    assert_equal 1, @board.letter_range(["A2", "A3", "A4"])
+    assert_equal 2, @board.letter_range(["A2", "B4", "B1"])
+    assert_equal 3, @board.letter_range(["A2", "B4", "C1"])
+    assert_equal 4, @board.letter_range(["A2", "B4", "D1"])
+  end
 end
