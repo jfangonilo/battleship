@@ -27,8 +27,15 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-   true if coordinates.length == ship.length
-   false
+    if ship.length != coordinates.length
+      false # test equals ship length
+    elsif (letter_range(coordinates) > 1) && (number_range(coordinates) > 1)
+      false # test for diagonal
+    elsif letter_range(coordinates) > ship.length || number_range(coordinates) > ship.length
+      false # test for consecutive
+    else
+      true
+    end
   end
 
   # get sorted array of the unique letters in a set of coordinates
