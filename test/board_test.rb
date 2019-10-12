@@ -60,13 +60,17 @@ class CellTest < Minitest::Test
     assert_equal true, @board.valid_placement?(@cruiser, ["B1", "C1", "D1"])
   end
 
-  def test_coordinate_letters
-    assert_equal ["A"], @board.letter_set(["A2", "A3", "A4"])
-    assert_equal ["A", "B", "D"], @board.letter_set(["D2", "A3", "B4"])
+  def test_range_of_letter_coordinates_given
+    assert_equal 1, @board.letter_range(["A2", "A3"])
+    assert_equal 2, @board.letter_range(["A2", "B1"])
+    assert_equal 3, @board.letter_range(["A2", "B4", "C1", "C3"])
+    assert_equal 4, @board.letter_range(["A2", "B4", "D1"])
   end
 
-  def test_coordinate_numbers
-    assert_equal ["1"], @board.number_set(["D1", "A1", "C1"])
-    assert_equal ["1", "2", "4"], @board.number_set(["A2", "B4", "B1"])
+  def test_range_of_number_coordinates_given
+    assert_equal 1, @board.number_range(["C3", "A3"])
+    assert_equal 2, @board.number_range(["D3", "B4", "B3"])
+    assert_equal 3, @board.number_range(["A2", "B1", "C1", "B3"])
+    assert_equal 4, @board.number_range(["B4", "D1"])
   end
 end
