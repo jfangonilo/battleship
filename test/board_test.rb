@@ -70,4 +70,11 @@ class CellTest < Minitest::Test
     assert_equal 3, @board.number_range(["A2", "B1", "C1", "B3"])
     assert_equal 4, @board.number_range(["B4", "D1"])
   end
+
+  def test_you_can_place_ship
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    assert_equal @cruiser, @board.cells["A1"].ship
+    assert_equal @cruiser, @board.cells["A2"].ship
+    assert_equal @cruiser, @board.cells["A3"].ship
+  end
 end
