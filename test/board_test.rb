@@ -77,4 +77,11 @@ class CellTest < Minitest::Test
     assert_equal @cruiser, @board.cells["A2"].ship
     assert_equal @cruiser, @board.cells["A3"].ship
   end
+
+  def test_no_overlapping_ships
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    assert_equal true, @board.coordinates_occupied?(["A1", "B1"])
+    assert_equal false, @board.coordinates_occupied?(["C1", "B1"])
+    assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
+  end
 end
