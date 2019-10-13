@@ -26,15 +26,9 @@ class Board
     cells.key?(coordinate)
   end
 
-  def valid_placement?(ship, coordinates)
-    if ship.length != coordinates.length
-      false # test equals ship length
-    elsif (letter_range(coordinates) > 1) && (number_range(coordinates) > 1)
-      false # test for diagonal
-    elsif letter_range(coordinates) > ship.length || number_range(coordinates) > ship.length
-      false # test for consecutive
-    else
-      true
+  def coordinates_occupied?(coordinates)
+    coordinates.any? do |coordinate|
+      cells[coordinate].empty? == false
     end
   end
 
@@ -56,9 +50,21 @@ class Board
     return (number_array.first..number_array.last).to_a.length
   end
 
-  def place(ship, coordinates)
-    coordinates.each do |coordinate|
-      cells[coordinate].place_ship(ship)
+  def valid_placement?(ship, coordinates)
+    if coordinates_occupied?(coordinates)
+      false # test if coordinates occupied
+    elsif ship.length != coordinates.length
+      false # test if coordinates length equals ship length
+    elsif (letter_range(coordinates) > 1) && (number_range(coordinates) > 1)
+      false # test if any coordinates are diagonal
+    elsif (letter_range(coordinates) > ship.length) || (number_range(coordinates) > ship.length)
+      false # test for consecutive coordinates
+    else
+      true
     end
+  end
+
+  def place(ship, coordinates)
+    coordinates.each {|coordinate| cells[coordinate].place_ship(ship)}
   end
 end
