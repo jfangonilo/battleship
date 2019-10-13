@@ -55,4 +55,10 @@ class Board
     end.uniq.sort
     return (number_array.first..number_array.last).to_a.length
   end
+
+  def place(ship, coordinates)
+    coordinates.each do |coordinate|
+      cells[coordinate].place_ship(ship)
+    end
+  end
 end
