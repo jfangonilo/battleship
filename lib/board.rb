@@ -67,4 +67,22 @@ class Board
   def place(ship, coordinates)
     coordinates.each {|coordinate| cells[coordinate].place_ship(ship)}
   end
+
+  def render
+    # held = @cells.keys
+    # print " 1 2 3 4  \n"
+    # @cells.each do |coordinate, cell|
+    #
+    #   print " " + cell.render
+    # end
+    # require "pry"; binding.pry
+  end
+
+  def dimensions
+    # gets x and y dimensions
+    x = @cells.keys.map {|coordinate| coordinate.split('').first}.flatten.uniq.sort.length
+    y = @cells.keys.map {|coordinate| coordinate.split('').last}.flatten.uniq.sort.length
+
+    [x, y]
+  end
 end
