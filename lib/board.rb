@@ -68,21 +68,27 @@ class Board
     coordinates.each {|coordinate| cells[coordinate].place_ship(ship)}
   end
 
-  def render
-    # held = @cells.keys
-    # print " 1 2 3 4  \n"
-    # @cells.each do |coordinate, cell|
-    #
-    #   print " " + cell.render
-    # end
-    # require "pry"; binding.pry
-  end
+  # def dimensions
+  #   # gets x and y dimensions
+  #   letters = @cells.keys.map {|coordinate| coordinate.split('').first}.flatten.uniq.sort
+  #   numbers = @cells.keys.map {|coordinate| coordinate.split('').last.to_i}.flatten.uniq.sort
+  #
+  #   {letters: letters, numbers: numbers}
+  # end
+  #
+  # def print_top_row
+  #   # prints top row based on board size
+  #   print "  "
+  #   dimensions[:numbers].each {|number| print "#{number} "}
+  #   print "\n"
+  # end
 
-  def dimensions
-    # gets x and y dimensions
-    x = @cells.keys.map {|coordinate| coordinate.split('').first}.flatten.uniq.sort.length
-    y = @cells.keys.map {|coordinate| coordinate.split('').last}.flatten.uniq.sort.length
-
-    [x, y]
+  def render(visible = false)
+    puts ""
+    print "  1 2 3 4 \n" +
+          "A #{cells["A1"].render(visible)} #{cells["A2"].render(visible)} #{cells["A3"].render(visible)} #{cells["A4"].render(visible)} \n" +
+          "B #{cells["B1"].render(visible)} #{cells["B2"].render(visible)} #{cells["B3"].render(visible)} #{cells["B4"].render(visible)} \n" +
+          "C #{cells["C1"].render(visible)} #{cells["C2"].render(visible)} #{cells["C3"].render(visible)} #{cells["C4"].render(visible)} \n" +
+          "D #{cells["D1"].render(visible)} #{cells["D2"].render(visible)} #{cells["D3"].render(visible)} #{cells["D4"].render(visible)} \n"
   end
 end
