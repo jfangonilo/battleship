@@ -91,11 +91,16 @@ class CellTest < Minitest::Test
     @board.place(@submarine, ["C2", "D2"])
     @board.render(true)
     @board.cells["A3"].fire_upon
+    @board.render(true)
     @board.cells["A2"].fire_upon
+    @board.render(true)
     @board.cells["A1"].fire_upon
-    @board.cells["C2"].fire_upon
+    @board.render(true)
     @board.cells["B4"].fire_upon
+    @board.render(true)
     @board.cells["C1"].fire_upon
+    @board.render(true)
+    @board.cells["C2"].fire_upon
     @board.render(true)
   end
 
