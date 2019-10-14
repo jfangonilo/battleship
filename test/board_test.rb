@@ -84,4 +84,18 @@ class CellTest < Minitest::Test
     assert_equal false, @board.coordinates_occupied?(["C1", "B1"])
     assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
   end
+
+  def test_render_empty_board
+    skip
+    expected = "  1 2 3 4 \n" +
+               "A . . . . \n" +
+               "B . . . . \n" +
+               "C . . . . \n" +
+               "D . . . . \n"
+    assert_equal expected, @board.render
+  end
+
+  def test_get_board_dimensions
+    assert_equal [4, 4], @board.dimensions
+  end
 end
