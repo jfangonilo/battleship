@@ -85,17 +85,22 @@ class CellTest < Minitest::Test
     assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
   end
 
-  def test_render_empty_board
-    skip
-    expected = "  1 2 3 4 \n" +
-               "A . . . . \n" +
-               "B . . . . \n" +
-               "C . . . . \n" +
-               "D . . . . \n"
-    assert_equal expected, @board.render
+  def test_render
+    @board.render
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.place(@submarine, ["C2", "D2"])
+    @board.render(true)
+    @board.cells["A3"].fire_upon
+    @board.cells["A2"].fire_upon
+    @board.cells["A1"].fire_upon
+    @board.cells["C2"].fire_upon
+    @board.cells["B4"].fire_upon
+    @board.cells["C1"].fire_upon
+    @board.render(true)
   end
 
-  def test_get_board_dimensions
-    assert_equal [4, 4], @board.dimensions
-  end
+  # def test_get_board_dimensions
+  #   expected = {letters: ["A", "B", "C", "D"], numbers: [1, 2, 3, 4]}
+  #   assert_equal expected, @board.dimensions
+  # end
 end
