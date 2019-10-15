@@ -4,7 +4,7 @@ require './lib/cell'
 require 'minitest/pride'
 require 'minitest/autorun'
 
-class CellTest < Minitest::Test
+class BoardTest < Minitest::Test
   def setup
     @board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
@@ -69,5 +69,38 @@ class CellTest < Minitest::Test
     assert_equal 2, @board.number_range(["D3", "B4", "B3"])
     assert_equal 3, @board.number_range(["A2", "B1", "C1", "B3"])
     assert_equal 4, @board.number_range(["B4", "D1"])
+  end
+
+  def test_you_can_place_ship
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    assert_equal @cruiser, @board.cells["A1"].ship
+    assert_equal @cruiser, @board.cells["A2"].ship
+    assert_equal @cruiser, @board.cells["A3"].ship
+  end
+
+  def test_no_overlapping_ships
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    assert_equal true, @board.coordinates_occupied?(["A1", "B1"])
+    assert_equal false, @board.coordinates_occupied?(["C1", "B1"])
+    assert_equal false, @board.valid_placement?(@submarine, ["A1", "B1"])
+  end
+
+  def test_render
+    @board.render
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    @board.place(@submarine, ["C2", "D2"])
+    @board.render(true)
+    @board.cells["A3"].fire_upon
+    @board.render(true)
+    @board.cells["A2"].fire_upon
+    @board.render(true)
+    @board.cells["A1"].fire_upon
+    @board.render(true)
+    @board.cells["B4"].fire_upon
+    @board.render(true)
+    @board.cells["C1"].fire_upon
+    @board.render(true)
+    @board.cells["C2"].fire_upon
+    @board.render(true)
   end
 end

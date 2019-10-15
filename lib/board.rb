@@ -26,16 +26,8 @@ class Board
     cells.key?(coordinate)
   end
 
-  def valid_placement?(ship, coordinates)
-    if ship.length != coordinates.length
-      false # test equals ship length
-    elsif (letter_range(coordinates) > 1) && (number_range(coordinates) > 1)
-      false # test for diagonal
-    elsif letter_range(coordinates) > ship.length || number_range(coordinates) > ship.length
-      false # test for consecutive
-    else
-      true
-    end
+  def coordinates_occupied?(coordinates)
+    coordinates.any? {|coordinate| cells[coordinate].empty? == false}
   end
 
   # get sorted array of the unique letters in a set of coordinates
@@ -54,5 +46,32 @@ class Board
       coordinate.split('').last
     end.uniq.sort
     return (number_array.first..number_array.last).to_a.length
+  end
+
+  def valid_placement?(ship, coordinates)
+    if coordinates_occupied?(coordinates)
+      false # test if coordinates occupied
+    elsif ship.length != coordinates.length
+      false # test if coordinates length equals ship length
+    elsif (letter_range(coordinates) > 1) && (number_range(coordinates) > 1)
+      false # test if any coordinates are diagonal
+    elsif (letter_range(coordinates) > ship.length) || (number_range(coordinates) > ship.length)
+      false # test for consecutive coordinates
+    else
+      true
+    end
+  end
+
+  def place(ship, coordinates)
+    coordinates.each {|coordinate| cells[coordinate].place_ship(ship)}
+  end
+
+  def render(visible = false)
+    puts ""
+    print "  1 2 3 4 \n" +
+          "A #{cells["A1"].render(visible)} #{cells["A2"].render(visible)} #{cells["A3"].render(visible)} #{cells["A4"].render(visible)} \n" +
+          "B #{cells["B1"].render(visible)} #{cells["B2"].render(visible)} #{cells["B3"].render(visible)} #{cells["B4"].render(visible)} \n" +
+          "C #{cells["C1"].render(visible)} #{cells["C2"].render(visible)} #{cells["C3"].render(visible)} #{cells["C4"].render(visible)} \n" +
+          "D #{cells["D1"].render(visible)} #{cells["D2"].render(visible)} #{cells["D3"].render(visible)} #{cells["D4"].render(visible)} \n"
   end
 end
