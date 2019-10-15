@@ -27,9 +27,7 @@ class Board
   end
 
   def coordinates_occupied?(coordinates)
-    coordinates.any? do |coordinate|
-      cells[coordinate].empty? == false
-    end
+    coordinates.any? {|coordinate| cells[coordinate].empty? == false}
   end
 
   # get sorted array of the unique letters in a set of coordinates
@@ -67,21 +65,6 @@ class Board
   def place(ship, coordinates)
     coordinates.each {|coordinate| cells[coordinate].place_ship(ship)}
   end
-
-  # def dimensions
-  #   # gets x and y dimensions
-  #   letters = @cells.keys.map {|coordinate| coordinate.split('').first}.flatten.uniq.sort
-  #   numbers = @cells.keys.map {|coordinate| coordinate.split('').last.to_i}.flatten.uniq.sort
-  #
-  #   {letters: letters, numbers: numbers}
-  # end
-  #
-  # def print_top_row
-  #   # prints top row based on board size
-  #   print "  "
-  #   dimensions[:numbers].each {|number| print "#{number} "}
-  #   print "\n"
-  # end
 
   def render(visible = false)
     puts ""
