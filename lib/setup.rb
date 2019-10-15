@@ -32,8 +32,9 @@ class Setup
     @ships.each do |key, ship|
       puts "Deploy the #{ship.name} (#{ship.length} units)"
       coordinates = input
-      until good_coordinates?(coordinates) && good_placement?(ship, coordinates)
+      until good_placement?(ship, coordinates)
         sleep 1.0
+        @player_board.render(true)
         puts "\nCannot deploy, please try again..." + "\nDo not overlap deployed ships and follow this format: A1 B1 C1"
         puts "#{ship.name}: #{ship.length} units\n"
         coordinates = input
