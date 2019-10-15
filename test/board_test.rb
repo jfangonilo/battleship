@@ -4,7 +4,7 @@ require './lib/cell'
 require 'minitest/pride'
 require 'minitest/autorun'
 
-class CellTest < Minitest::Test
+class BoardTest < Minitest::Test
   def setup
     @board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
@@ -103,9 +103,4 @@ class CellTest < Minitest::Test
     @board.cells["C2"].fire_upon
     @board.render(true)
   end
-
-  # def test_get_board_dimensions
-  #   expected = {letters: ["A", "B", "C", "D"], numbers: [1, 2, 3, 4]}
-  #   assert_equal expected, @board.dimensions
-  # end
 end
