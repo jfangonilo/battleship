@@ -51,6 +51,8 @@ class Board
   def valid_placement?(ship, coordinates)
     if coordinates_occupied?(coordinates)
       false # test if coordinates occupied
+    elsif coordinates.uniq.length != coordinates.length
+      false # check for duplicate coordinates
     elsif ship.length != coordinates.length
       false # test if coordinates length equals ship length
     elsif (letter_range(coordinates) > 1) && (number_range(coordinates) > 1)
