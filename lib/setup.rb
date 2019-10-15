@@ -46,4 +46,32 @@ class Setup
       puts ""
     end
   end
+
+  def computer_place(ship)
+    letters = ["A", "B", "C", "D"]
+    numbers = ["1", "2", "3", "4"]
+    coin_flip = rand(2)
+    # require "pry"; binding.pry
+    if coin_flip == 1
+      valid_letter_combos = []
+      letters.map.each_cons(ship.length) {|letter| valid_letter_combos << letter}
+      # require "pry"; binding.pry
+      letter_placement = valid_letter_combos.sample
+      match = numbers.sample
+      rtrn = letter_placement.map do |letter|
+        letter + match
+      end
+      require "pry"; binding.pry
+    else
+      valid_number_combos = []
+      numbers.map.each_cons(ship.length) {|number| valid_number_combos << number}
+      # require "pry"; binding.pry
+      number_placement = valid_number_combos.sample
+      match = letters.sample
+      rtrn = number_placement.map do |number|
+        number.prepend(match)
+      end
+      require "pry"; binding.pry
+    end
+  end
 end
