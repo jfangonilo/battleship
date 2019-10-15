@@ -15,10 +15,7 @@ class Setup
   end
 
   def good_coordinates?(coordinates)
-    coordinates.each do |coordinate|
-      return false if @player_board.valid_coordinate?(coordinate) == false
-      return true
-    end
+    coordinates.all? {|coordinate| @player_board.valid_coordinate?(coordinate)}
   end
 
   def good_placement?(ship, coordinates)
@@ -51,27 +48,18 @@ class Setup
     letters = ["A", "B", "C", "D"]
     numbers = ["1", "2", "3", "4"]
     coin_flip = rand(2)
-    # require "pry"; binding.pry
     if coin_flip == 1
       valid_letter_combos = []
       letters.map.each_cons(ship.length) {|letter| valid_letter_combos << letter}
-      # require "pry"; binding.pry
       letter_placement = valid_letter_combos.sample
       match = numbers.sample
-      rtrn = letter_placement.map do |letter|
-        letter + match
-      end
-      require "pry"; binding.pry
+      letter_placement.map {|letter| letter + match}
     else
       valid_number_combos = []
       numbers.map.each_cons(ship.length) {|number| valid_number_combos << number}
-      # require "pry"; binding.pry
       number_placement = valid_number_combos.sample
       match = letters.sample
-      rtrn = number_placement.map do |number|
-        number.prepend(match)
-      end
-      require "pry"; binding.pry
+      number_placement.map {|number| number.prepend(match)}
     end
   end
 end
