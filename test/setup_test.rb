@@ -33,6 +33,10 @@ class SetupTest < Minitest::Test
 
   def test_it_can_validate_placements
     skip
-    assert_equal true, @setup.good_placement?(@cruiser, @setup.input)
+    assert_equal true, @setup.good_placement?(@submarine, @setup.input)
+  end
+
+  def test_player_can_place
+    assert_equal "valid", @setup.player_place
   end
 end
