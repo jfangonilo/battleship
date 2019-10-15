@@ -8,6 +8,8 @@ require 'minitest/autorun'
 class SetupTest < Minitest::Test
   def setup
     @setup = Setup.new
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
   end
 
   def test_it_exists
@@ -25,6 +27,12 @@ class SetupTest < Minitest::Test
   end
 
   def test_it_can_validate_inputs
+    skip
     assert_equal true, @setup.good_coordinates?(@setup.input)
+  end
+
+  def test_it_can_validate_placements
+    skip
+    assert_equal true, @setup.good_placement?(@cruiser, @setup.input)
   end
 end

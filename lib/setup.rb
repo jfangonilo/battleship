@@ -16,4 +16,9 @@ class Setup
       return true
     end
   end
+
+  def good_placement?(ship, coordinates)
+    return false if good_coordinates?(coordinates) == false
+    return @player_board.valid_placement?(ship, coordinates)
+  end
 end
