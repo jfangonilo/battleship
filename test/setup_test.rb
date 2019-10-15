@@ -18,4 +18,13 @@ class SetupTest < Minitest::Test
     assert_instance_of Board, @setup.computer_board
     assert_instance_of Board, @setup.player_board
   end
+
+  def test_it_can_get_player_input
+    skip
+    assert_equal ["A3", "A2", "A1"], @setup.input
+  end
+
+  def test_it_can_validate_inputs
+    assert_equal true, @setup.good_coordinates?(@setup.input)
+  end
 end
