@@ -11,7 +11,7 @@ class Setup
   end
 
   def input
-    gets.chomp.upcase.split(" ")
+      gets.chomp.upcase.split(" ")
   end
 
   def good_coordinates?(coordinates)
@@ -27,23 +27,20 @@ class Setup
   end
 
   def player_place
-  puts "The enemy has deployed their ships!"
-  puts "Deploy your ships now!"
-  puts "Follow this format: A1 B1 C1"
+  puts "The enemy has deployed their ships! \n" + "Deploy your ships now!\n" + "Follow this format: A1 B1 C1\n"
   @player_board.render(true)
     @ships.each do |key, ship|
-      puts "Enter squares for the #{ship.name} (#{ship.length} spaces)"
+      puts "Deploy the #{ship.name} (#{ship.length} units)"
       coordinates = input
       until good_coordinates?(coordinates) && good_placement?(ship, coordinates)
         sleep 1.0
-        puts "Invalid placement, please try again..."
-        puts "Do not overlap placed ships and follow this format: A1 B1 C1"
-        puts "#{ship.name}: #{ship.length} spaces"
+        puts "\nCannot deploy, please try again..." + "\nDo not overlap deployed ships and follow this format: A1 B1 C1"
+        puts "#{ship.name}: #{ship.length} units\n"
         coordinates = input
       end
       @player_board.place(ship, coordinates)
       sleep 1.0
-      puts "#{ship.name} placed!"
+      puts "\n#{ship.name} deployed!"
       @player_board.render(true)
       puts ""
     end
