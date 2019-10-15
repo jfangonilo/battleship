@@ -7,10 +7,6 @@ require 'minitest/autorun'
 
 class SetupTest < Minitest::Test
   def setup
-    @board = Board.new
-    @cruiser = Ship.new("Cruiser", 3)
-    @submarine = Ship.new("Submarine", 2)
-
     @setup = Setup.new
   end
 

@@ -5,6 +5,4 @@ class Setup
     @player_board = Board.new
     @computer_board = Board.new
   end
-
-  
 end
