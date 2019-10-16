@@ -45,9 +45,9 @@ class Setup
   end
 
   def valid_consecutive(rows_and_columns, ship)
-    valid_consecutive = []
+    valid = []
     rows_and_columns.each_cons(ship.length) {|row_or_column| valid << row_or_column}
-    valid_consecutive
+    valid
   end
 
   def vertical_placement(letters, numbers, ship)

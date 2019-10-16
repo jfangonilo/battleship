@@ -25,23 +25,11 @@ class Cell
     @fired_upon
   end
 
-  def hit?
-    !empty? && fired_upon?
-  end
-
-  def sunk?
-    !empty? && ship.sunk?
-  end
-
-  def missed?
-    empty? && fired_upon?
-  end
-
   def render(ship_visible = false)
-    return "X" if sunk?
-    return "H" if hit?
+    return "X" if !empty? && ship.sunk?
+    return "H" if !empty? && fired_upon?
     return "S" if !empty? && ship_visible
-    return "M" if missed?
+    return "M" if empty? && fired_upon?
     "."
   end
 end

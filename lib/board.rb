@@ -83,10 +83,10 @@ class Board
   end
 
   def letter_dimensions
-    sort_by_unique(@cells.keys.map {|coordinate| split(coordinate).first}.flatten)
+    sort_by_unique(@cells.keys.flat_map {|coordinate| split(coordinate).first})
   end
 
   def number_dimensions
-    sort_by_unique(@cells.keys.map {|coordinate| split(coordinate).last}.flatten)
+    sort_by_unique(@cells.keys.flat_map {|coordinate| split(coordinate).last})
   end
 end
