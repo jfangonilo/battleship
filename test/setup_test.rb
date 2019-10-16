@@ -37,11 +37,12 @@ class SetupTest < Minitest::Test
   end
 
   def test_player_can_place
-    skip
+
     @setup.player_place
   end
 
   def test_computer_place
+    skip
     @setup.computer_place(@cruiser)
   end
 end

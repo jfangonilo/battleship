@@ -19,8 +19,8 @@ class Setup
   end
 
   def good_placement?(ship, coordinates)
-    return false if good_coordinates?(coordinates) == false
-    return @player_board.valid_placement?(ship, coordinates)
+    return false unless good_coordinates?(coordinates)
+    @player_board.valid_placement?(ship, coordinates)
   end
 
   def player_place
@@ -44,22 +44,27 @@ class Setup
     end
   end
 
+  def valid_consecutive(rows_and_columns, ship)
+    valid_consecutive = []
+    rows_and_columns.each_cons(ship.length) {|row_or_column| valid << row_or_column}
+    valid_consecutive
+  end
+
+  def vertical_placement(letters, numbers, ship)
+    number = numbers.sample
+    (valid_consecutive(letters, ship).sample).map {|letter| letter + number}
+  end
+
+  def horizontal_placement(letters, numbers, ship)
+    letter = letters.sample
+    (valid_consecutive(numbers, ship).sample).map {|number| letter + number}
+  end
+
   def computer_place(ship)
-    letters = ["A", "B", "C", "D"]
-    numbers = ["1", "2", "3", "4"]
-    coin_flip = rand(2)
-    if coin_flip == 1
-      valid_letter_combos = []
-      letters.map.each_cons(ship.length) {|letter| valid_letter_combos << letter}
-      letter_placement = valid_letter_combos.sample
-      match = numbers.sample
-      letter_placement.map {|letter| letter + match}
+    if rand(2) == 1
+      vertical_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship)
     else
-      valid_number_combos = []
-      numbers.map.each_cons(ship.length) {|number| valid_number_combos << number}
-      number_placement = valid_number_combos.sample
-      match = letters.sample
-      number_placement.map {|number| number.prepend(match)}
+      horizontal_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship)
     end
   end
 end
