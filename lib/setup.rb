@@ -84,5 +84,4 @@ class Setup
   def computer_place_all
     @ships.each {|key, ship| computer_place(ship)}
   end
-
 end
