@@ -52,12 +52,13 @@ class SetupTest < Minitest::Test
     @setup.player_place
   end
 
-  def test_computer_place
+  def test_computer_decide
     skip
-    @setup.computer_place(@cruiser)
+    @setup.computer_decide(@cruiser)
   end
 
   def test_vertical
+    skip
     puts "\nAll sets should have like number coordinate"
     p @setup.vertical_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
     p @setup.vertical_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
@@ -68,6 +69,7 @@ class SetupTest < Minitest::Test
   end
 
   def test_horizontal
+    skip
     puts "\nAll sets should have like letter coordinate"
     p @setup.horizontal_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
     p @setup.horizontal_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
@@ -78,5 +80,15 @@ class SetupTest < Minitest::Test
   end
 
   def test_computer_place
+    skip
+    @setup.computer_place(@cruiser)
+    @setup.computer_board.render(true)
+    @setup.computer_place(@submarine)
+    @setup.computer_board.render(true)
+  end
+
+  def test_computer_place_all
+    @setup.computer_place_all
+    @setup.computer_board.render(true)
   end
 end

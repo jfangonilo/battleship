@@ -60,11 +60,20 @@ class Setup
     (valid_consecutive(numbers, ship).sample).map {|number| letter + number}
   end
 
+  def computer_decide(ship)
+    return vertical_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship) if rand(2) == 1
+    horizontal_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship)
+  end
+
   def computer_place(ship)
-    if rand(2) == 1
-      vertical_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship)
-    else
-      horizontal_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship)
+    place_attempt = computer_decide(ship)
+    while @computer_board.coordinates_occupied?(place_attempt)
+      place_attempt = computer_decide(ship)
     end
+    @computer_board.place(ship, place_attempt)
+  end
+
+  def computer_place_all
+    @ships.each {|key, ship| computer_place(ship)}
   end
 end
