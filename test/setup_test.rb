@@ -23,6 +23,7 @@ class SetupTest < Minitest::Test
 
   def test_it_can_validate_inputs
     assert_equal true, @setup.good_coordinates?(["A1", "A4"])
+    assert_equal true, @setup.good_coordinates?(["C4", "A4", "B2"])
     assert_equal false, @setup.good_coordinates?(["1B"])
     assert_equal false, @setup.good_coordinates?(["BA"])
     assert_equal false, @setup.good_coordinates?(["sgdkjbsd"])
@@ -59,7 +60,7 @@ class SetupTest < Minitest::Test
 
   def test_vertical
     skip
-    puts "\nAll sets should have like number coordinate"
+    puts "\nAll sets should have same number coordinate"
     p @setup.vertical_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
     p @setup.vertical_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
     p @setup.vertical_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
@@ -70,7 +71,7 @@ class SetupTest < Minitest::Test
 
   def test_horizontal
     skip
-    puts "\nAll sets should have like letter coordinate"
+    puts "\nAll sets should have same letter coordinate"
     p @setup.horizontal_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
     p @setup.horizontal_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)
     p @setup.horizontal_placement(["A", "B", "C", "D"], ["1", "2", "3", "4"], @cruiser)

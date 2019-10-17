@@ -60,9 +60,17 @@ class Setup
     (valid_consecutive(numbers, ship).sample).map {|number| letter + number}
   end
 
+  def comp_board_letters
+    @computer_board.letter_dimensions
+  end
+
+  def comp_board_numbers
+    @computer_board.number_dimensions
+  end
+
   def computer_decide(ship)
-    return vertical_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship) if rand(2) == 1
-    horizontal_placement(@computer_board.letter_dimensions, @computer_board.number_dimensions, ship)
+    return vertical_placement(comp_board_letters, comp_board_numbers, ship) if rand(2) == 1
+    horizontal_placement(comp_board_letters, comp_board_numbers, ship)
   end
 
   def computer_place(ship)
